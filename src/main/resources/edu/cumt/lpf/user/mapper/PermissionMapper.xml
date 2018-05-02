@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.cumt.lpf.user.mapper.PermissionMapper">
+  <resultMap id="BaseResultMap" type="edu.cumt.lpf.user.pojo.Permission">
+    <constructor>
+      <idArg column="ROWID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="PERMISSION_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PERMISSION_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RESOURCE_URL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PERMISSION_PERMISSION" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PEARENT_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PERMISSION_STATUS" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="CREATED_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="LAST_UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="MARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ROWID, PERMISSION_ID, PERMISSION_CODE, RESOURCE_TYPE, RESOURCE_URL, PERMISSION_PERMISSION, 
+    PEARENT_CODE, PERMISSION_STATUS, CREATED_TIME, LAST_UPDATE_TIME, MARK
+  </sql>
+  <select id="selectByExample" parameterType="edu.cumt.lpf.user.pojo.PermissionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from md_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from md_permission
+    where ROWID = #{rowid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from md_permission
+    where ROWID = #{rowid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.cumt.lpf.user.pojo.PermissionExample">
+    delete from md_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.cumt.lpf.user.pojo.Permission">
+    insert into md_permission (ROWID, PERMISSION_ID, PERMISSION_CODE, 
+      RESOURCE_TYPE, RESOURCE_URL, PERMISSION_PERMISSION, 
+      PEARENT_CODE, PERMISSION_STATUS, CREATED_TIME, 
+      LAST_UPDATE_TIME, MARK)
+    values (#{rowid,jdbcType=INTEGER}, #{permissionId,jdbcType=VARCHAR}, #{permissionCode,jdbcType=VARCHAR}, 
+      #{resourceType,jdbcType=VARCHAR}, #{resourceUrl,jdbcType=VARCHAR}, #{permissionPermission,jdbcType=VARCHAR}, 
+      #{pearentCode,jdbcType=VARCHAR}, #{permissionStatus,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{mark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.cumt.lpf.user.pojo.Permission">
+    insert into md_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rowid != null">
+        ROWID,
+      </if>
+      <if test="permissionId != null">
+        PERMISSION_ID,
+      </if>
+      <if test="permissionCode != null">
+        PERMISSION_CODE,
+      </if>
+      <if test="resourceType != null">
+        RESOURCE_TYPE,
+      </if>
+      <if test="resourceUrl != null">
+        RESOURCE_URL,
+      </if>
+      <if test="permissionPermission != null">
+        PERMISSION_PERMISSION,
+      </if>
+      <if test="pearentCode != null">
+        PEARENT_CODE,
+      </if>
+      <if test="permissionStatus != null">
+        PERMISSION_STATUS,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="lastUpdateTime != null">
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="mark != null">
+        MARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rowid != null">
+        #{rowid,jdbcType=INTEGER},
+      </if>
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null">
+        #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null">
+        #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionPermission != null">
+        #{permissionPermission,jdbcType=VARCHAR},
+      </if>
+      <if test="pearentCode != null">
+        #{pearentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionStatus != null">
+        #{permissionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.cumt.lpf.user.pojo.PermissionExample" resultType="java.lang.Long">
+    select count(*) from md_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update md_permission
+    <set>
+      <if test="record.rowid != null">
+        ROWID = #{record.rowid,jdbcType=INTEGER},
+      </if>
+      <if test="record.permissionId != null">
+        PERMISSION_ID = #{record.permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permissionCode != null">
+        PERMISSION_CODE = #{record.permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resourceType != null">
+        RESOURCE_TYPE = #{record.resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resourceUrl != null">
+        RESOURCE_URL = #{record.resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permissionPermission != null">
+        PERMISSION_PERMISSION = #{record.permissionPermission,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pearentCode != null">
+        PEARENT_CODE = #{record.pearentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permissionStatus != null">
+        PERMISSION_STATUS = #{record.permissionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdTime != null">
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null">
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mark != null">
+        MARK = #{record.mark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update md_permission
+    set ROWID = #{record.rowid,jdbcType=INTEGER},
+      PERMISSION_ID = #{record.permissionId,jdbcType=VARCHAR},
+      PERMISSION_CODE = #{record.permissionCode,jdbcType=VARCHAR},
+      RESOURCE_TYPE = #{record.resourceType,jdbcType=VARCHAR},
+      RESOURCE_URL = #{record.resourceUrl,jdbcType=VARCHAR},
+      PERMISSION_PERMISSION = #{record.permissionPermission,jdbcType=VARCHAR},
+      PEARENT_CODE = #{record.pearentCode,jdbcType=VARCHAR},
+      PERMISSION_STATUS = #{record.permissionStatus,jdbcType=INTEGER},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      MARK = #{record.mark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.cumt.lpf.user.pojo.Permission">
+    update md_permission
+    <set>
+      <if test="permissionId != null">
+        PERMISSION_ID = #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        PERMISSION_CODE = #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceType != null">
+        RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceUrl != null">
+        RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionPermission != null">
+        PERMISSION_PERMISSION = #{permissionPermission,jdbcType=VARCHAR},
+      </if>
+      <if test="pearentCode != null">
+        PEARENT_CODE = #{pearentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionStatus != null">
+        PERMISSION_STATUS = #{permissionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mark != null">
+        MARK = #{mark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROWID = #{rowid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.cumt.lpf.user.pojo.Permission">
+    update md_permission
+    set PERMISSION_ID = #{permissionId,jdbcType=VARCHAR},
+      PERMISSION_CODE = #{permissionCode,jdbcType=VARCHAR},
+      RESOURCE_TYPE = #{resourceType,jdbcType=VARCHAR},
+      RESOURCE_URL = #{resourceUrl,jdbcType=VARCHAR},
+      PERMISSION_PERMISSION = #{permissionPermission,jdbcType=VARCHAR},
+      PEARENT_CODE = #{pearentCode,jdbcType=VARCHAR},
+      PERMISSION_STATUS = #{permissionStatus,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      MARK = #{mark,jdbcType=VARCHAR}
+    where ROWID = #{rowid,jdbcType=INTEGER}
+  </update>
+</mapper>

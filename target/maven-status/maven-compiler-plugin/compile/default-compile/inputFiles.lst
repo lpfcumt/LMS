@@ -1,0 +1,17 @@
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\pojo\User.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\configuration\DruidDataSourceConfig.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\mapper\UserMapper.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\pojo\PermissionExample.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\configuration\ShiroConfig.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\shiro\MyShiroRealm.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\pojo\Permission.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\service\UserService.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\pojo\RoleExample.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\mapper\RoleMapper.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\service\user\impl\UserServiceImpl.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\pojo\Role.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\pojo\UserExample.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\BootStart.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\controller\TestController.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\util\MD5.java
+D:\毕业设计\LMS\src\main\java\edu\cumt\lpf\user\mapper\PermissionMapper.java
